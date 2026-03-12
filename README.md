@@ -1,21 +1,21 @@
 # diagnostics_quickfix.nvim
 
-Automatically synchronize current-buffer diagnostics into Neovim quickfix.
+現在バッファの LSP diagnostics を quickfix に自動同期する Neovim プラグインです。
 
-## Features
+## 機能
 
-- Syncs on `DiagnosticChanged` and `BufEnter`
-- Tracks diagnostics only for the current buffer
-- Normalizes multiline diagnostic text into a single quickfix line
-- Opens quickfix when diagnostics exist
-- Closes quickfix when diagnostics are empty
-- Ignores quickfix buffers to avoid recursive updates
+- `DiagnosticChanged` と `BufEnter` で quickfix を更新
+- 現在バッファの diagnostics のみを対象に同期
+- 複数行の diagnostic メッセージを 1 行に正規化
+- diagnostics があるときは quickfix を開く
+- diagnostics が空のときは quickfix を閉じる
+- quickfix バッファ自身は更新対象から除外
 
-## Requirements
+## 要件
 
-- Neovim 0.9+
+- Neovim 0.9 以上
 
-## Install (lazy.nvim)
+## インストール（lazy.nvim）
 
 ```lua
 {
@@ -23,18 +23,17 @@ Automatically synchronize current-buffer diagnostics into Neovim quickfix.
 }
 ```
 
-## Configuration
+## 設定
 
-Optional global setting:
+任意で表示件数の上限を設定できます。
 
 ```lua
 vim.g.diagnostics_quickfix_max_items = 5
 ```
 
-Default is `5`.
+デフォルト値は `5` です。
 
-## Notes
+## 補足
 
-- The plugin writes to the quickfix list (`setqflist`) on every sync event.
-- If you want all diagnostics instead of a capped list, set a large value for
-  `vim.g.diagnostics_quickfix_max_items`.
+- 同期イベントごとに `setqflist` で quickfix リストを更新します。
+- 上限なしに近い表示にしたい場合は `vim.g.diagnostics_quickfix_max_items` を大きくしてください。
