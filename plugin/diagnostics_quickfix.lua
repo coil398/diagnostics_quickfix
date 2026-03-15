@@ -31,10 +31,10 @@ local function update_diagnostics_quickfix(bufnr)
   end
 
   local diagnostics = vim.diagnostic.get(bufnr)
-  local max_items = vim.g.diagnostics_quickfix_max_items or 5
+  local max_items = vim.g.diagnostics_quickfix_max_items
   local items = {}
 
-  for i = 1, math.min(#diagnostics, max_items) do
+  for i = 1, (max_items and math.min(#diagnostics, max_items) or #diagnostics) do
     local diag = diagnostics[i]
     table.insert(items, {
       bufnr = bufnr,

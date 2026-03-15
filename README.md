@@ -25,15 +25,12 @@
 
 ## 設定
 
-任意で表示件数の上限を設定できます。
+デフォルトはすべての diagnostics を表示します。任意で表示件数の上限を設定できます。
 
 ```lua
 vim.g.diagnostics_quickfix_max_items = 5
 ```
 
-デフォルト値は `5` です。
-
 ## 補足
 
 - 同期イベントごとに `setqflist` で quickfix リストを更新します。
-- 上限なしに近い表示にしたい場合は `vim.g.diagnostics_quickfix_max_items` を大きくしてください。
