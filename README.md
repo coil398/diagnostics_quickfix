@@ -10,6 +10,8 @@
 - diagnostics があるときは quickfix を開く
 - diagnostics が空のときは quickfix を閉じる
 - quickfix バッファ自身は更新対象から除外
+- デバウンスによる高頻度更新の抑制
+- severity（ERROR → WARN → INFO → HINT）順でソート
 
 ## 要件
 
@@ -25,10 +27,20 @@
 
 ## 設定
 
-デフォルトはすべての diagnostics を表示します。任意で表示件数の上限を設定できます。
+すべての設定は任意です。デフォルト値のまま動作します。
 
 ```lua
+-- 表示件数の上限（デフォルト: 無制限）
 vim.g.diagnostics_quickfix_max_items = 5
+
+-- quickfix ウィンドウの最大高さ（デフォルト: 10）
+vim.g.diagnostics_quickfix_max_height = 10
+
+-- 更新のデバウンス間隔（ミリ秒、デフォルト: 100）
+vim.g.diagnostics_quickfix_debounce_ms = 100
+
+-- severity 順でソートするか（デフォルト: true）
+vim.g.diagnostics_quickfix_sort_by_severity = true
 ```
 
 ## 補足
